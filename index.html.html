@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Velkor Automation – Soluții premium de robotică industrială și medicală. Roboți colaborativi, automatizare Industry 4.0, tehnologii inteligente pentru producție și sănătate.">
+<meta name="keywords" content="roboți industriali, automatizare industrială, robotică medicală, roboți colaborativi, Industry 4.0, soluții AI industriale, automatizare fabrici, robotică industrială Moldova, roboți medicali">
+<title>Velkor Automation – Automatizăm Viitorul Industriei și Medicinei</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #00f5ff;
+  --cyan2: #0ff;
+  --blue: #0080ff;
+  --blue2: #003fff;
+  --dark: #020810;
+  --dark2: #050f1a;
+  --dark3: #091525;
+  --surface: #0a1628;
+  --surface2: #0d1e35;
+  --text: #e8f4ff;
+  --text2: #8ab4d4;
+  --text3: #4a7a9b;
+  --border: rgba(0,245,255,0.12);
+  --border2: rgba(0,245,255,0.25);
+  --glow: 0 0 40px rgba(0,245,255,0.15);
+  --glow2: 0 0 80px rgba(0,245,255,0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(0,245,255,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.15s ease, width 0.3s, height 0.3s;
+}
+
+/* NOISE TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* GRID BACKGROUND */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 4rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(2,8,16,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+nav.scrolled {
+  height: 60px;
+  background: rgba(2,8,16,0.95);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  position: relative;
+}
+.logo-mark svg { width: 100%; height: 100%; }
+.logo-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text);
+}
+.logo-text span { color: var(--cyan); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-cta {
+  padding: 8px 24px;
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan) !important;
+  border-radius: 2px;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.15em !important;
+  cursor: none;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover {
+  background: rgba(0,245,255,0.1) !important;
+  box-shadow: 0 0 20px rgba(0,245,255,0.2);
+}
+.nav-cta::after { display: none !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: none;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  width: 24px; height: 1px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* SECTIONS */
+section { position: relative; z-index: 2; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 4rem 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,128,255,0.15) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.orb2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);
+  bottom: 100px; left: 10%;
+  animation: orbFloat 10s ease-in-out infinite reverse;
+}
+.orb3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,63,255,0.12) 0%, transparent 70%);
+  top: 40%; left: 50%;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.05); }
+  66% { transform: translate(-20px,30px) scale(0.95); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--border2);
+  background: rgba(0,245,255,0.05);
+  border-radius: 1px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease both;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,245,255,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0,245,255,0); }
+}
+
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s 0.1s ease both;
+}
+.hero-title .accent { color: var(--cyan); }
+.hero-title .outline {
+  -webkit-text-stroke: 1px rgba(0,245,255,0.5);
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text2);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 0.8s 0.2s ease both;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s 0.3s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--cyan);
+  color: var(--dark);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  cursor: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  opacity: 0.1;
+}
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary:hover { box-shadow: 0 0 30px rgba(0,245,255,0.4); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  cursor: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0,245,255,0.05);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  animation: fadeInUp 0.8s 0.4s ease both;
+}
+.stat-item { text-align: left; }
+.stat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ROBOT VISUAL */
+.hero-visual {
+  position: relative;
+  animation: fadeInRight 1s 0.3s ease both;
+}
+.robot-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.robot-frame canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.frame-corner {
+  position: absolute;
+  width: 30px; height: 30px;
+  border-color: var(--cyan);
+  border-style: solid;
+}
+.frame-corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.frame-corner.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.frame-corner.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.frame-corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+.scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  opacity: 0.5;
+  animation: scan 4s linear infinite;
+}
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.data-tags {
+  position: absolute;
+  inset: 0;
+}
+.data-tag {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--cyan);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+.data-tag::before {
+  content: '▸ ';
+  opacity: 0.5;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* SECTION COMMON */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--cyan);
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.section-title .accent { color: var(--cyan); }
+
+.section-desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text2);
+  max-width: 560px;
+}
+
+/* ABOUT */
+#about {
+  padding: 120px 4rem;
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 50%, var(--dark) 100%);
+}
+.about-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+}
+.about-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.metric-item {
+  padding: 1.5rem;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.metric-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+}
+.metric-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+.metric-txt { font-size: 0.8rem; color: var(--text3); margin-top: 4px; }
+
+.about-text .section-desc { max-width: 100%; margin-bottom: 2rem; }
+.feature-list { list-style: none; }
+.feature-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.feature-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* SERVICES */
+#services {
+  padding: 120px 4rem;
+  background: var(--dark2);
+}
+.services-header {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+.services-header .section-label { justify-content: center; }
+.services-header .section-desc { margin: 0 auto; }
+
+.services-tabs {
+  display: flex;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.tab-btn {
+  flex: 1;
+  padding: 14px 24px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text2);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: all 0.3s;
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active {
+  background: rgba(0,245,255,0.08);
+  color: var(--cyan);
+  border-bottom: 2px solid var(--cyan);
+}
+.tab-btn:hover:not(.active) {
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+}
+
+.services-grid {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.services-grid.active { display: grid; }
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: none;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  border-color: var(--border2);
+  background: var(--surface2);
+  transform: translateY(-4px);
+  box-shadow: var(--glow);
+}
+
+.card-icon {
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,245,255,0.08);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.card-icon svg { width: 24px; height: 24px; color: var(--cyan); }
+
+.card-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.card-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text2);
+  margin-bottom: 1rem;
+}
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  background: rgba(0,245,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 1px;
+  color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* BENEFITS */
+#benefits {
+  padding: 120px 4rem;
+  background: var(--dark);
+}
+.benefits-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+}
+.benefits-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.benefit-item {
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: none;
+}
+.benefit-item:hover {
+  border-color: var(--border2);
+  box-shadow: var(--glow);
+}
+.benefit-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.benefit-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+}
+.benefit-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.4rem;
+  color: var(--text);
+}
+.benefit-desc {
+  font-size: 0.8rem;
+  color: var(--text3);
+  line-height: 1.6;
+}
+
+/* INDUSTRIES */
+#industries {
+  padding: 120px 4rem;
+  background: var(--dark2);
+  overflow: hidden;
+}
+.industries-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.industries-header { text-align: center; margin-bottom: 4rem; }
+.industries-header .section-label { justify-content: center; }
+.industries-header .section-desc { margin: 0 auto; }
+
+.industries-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow: visible;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.industry-card {
+  flex: 0 0 auto;
+  width: 220px;
+  padding: 2rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.industry-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(0,245,255,0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.industry-card:hover::after { opacity: 1; }
+.industry-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-4px);
+}
+.industry-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.industry-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.industry-desc {
+  font-size: 0.75rem;
+  color: var(--text3);
+  line-height: 1.5;
+}
+
+/* TECHNOLOGIES */
+#technologies {
+  padding: 120px 4rem;
+  background: var(--dark);
+}
+.tech-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.tech-diagram {
+  position: relative;
+  height: 400px;
+}
+.tech-canvas-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.tech-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: all 0.3s;
+  cursor: none;
+}
+.tech-item:hover {
+  border-color: var(--border2);
+  background: var(--surface2);
+}
+.tech-dot {
+  width: 8px; height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--cyan);
+}
+.tech-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* PORTFOLIO */
+#portfolio {
+  padding: 120px 4rem;
+  background: var(--dark2);
+}
+.portfolio-header {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+.portfolio-header .section-label { justify-content: center; }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.portfolio-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: none;
+}
+.portfolio-item:hover {
+  border-color: var(--border2);
+  transform: translateY(-4px);
+  box-shadow: var(--glow);
+}
+.portfolio-item:first-child {
+  grid-column: span 2;
+}
+.portfolio-visual {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--dark3);
+}
+.portfolio-visual canvas {
+  width: 100%;
+  height: 100%;
+}
+.portfolio-info {
+  padding: 1.5rem;
+}
+.portfolio-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.5rem;
+}
+.portfolio-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.portfolio-desc {
+  font-size: 0.8rem;
+  color: var(--text3);
+  line-height: 1.6;
+}
+
+/* TESTIMONIALS */
+#testimonials {
+  padding: 120px 4rem;
+  background: var(--dark);
+}
+.testimonials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonials-inner .section-label { justify-content: center; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  text-align: left;
+}
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s;
+  cursor: none;
+}
+.testimonial-card:hover {
+  border-color: var(--border2);
+  box-shadow: var(--glow);
+}
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-family: 'Orbitron', monospace;
+  font-size: 4rem;
+  color: rgba(0,245,255,0.1);
+  line-height: 1;
+}
+.testimonial-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+.star { color: var(--cyan); font-size: 0.85rem; }
+.testimonial-text {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text2);
+  margin-bottom: 1.5rem;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--dark3);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+  color: var(--cyan);
+  font-weight: 700;
+}
+.author-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.author-role {
+  font-size: 0.75rem;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* CONTACT */
+#contact {
+  padding: 120px 4rem;
+  background: var(--dark2);
+}
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-info { padding-top: 2rem; }
+.contact-info .section-desc { margin-bottom: 3rem; }
+
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-detail:last-of-type { border-bottom: none; }
+.detail-icon {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,245,255,0.08);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.detail-icon svg { width: 16px; height: 16px; color: var(--cyan); }
+.detail-label { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; }
+.detail-value { font-size: 0.9rem; color: var(--text); margin-top: 2px; }
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), transparent);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.form-group:last-of-type { margin-bottom: 1.5rem; }
+
+.form-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+.form-input, .form-textarea {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s;
+  width: 100%;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--cyan);
+  background: rgba(0,245,255,0.03);
+  box-shadow: 0 0 0 1px rgba(0,245,255,0.15);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 5rem 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.footer-brand .logo-text { font-size: 1.2rem; display: block; margin-bottom: 1rem; }
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+.social-link {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text2);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 1rem;
+  cursor: none;
+}
+.social-link:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0,245,255,0.05);
+}
+
+.footer-col h4 {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.75rem; }
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--cyan); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TICKER */
+.ticker-wrap {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 12px 0;
+  position: relative;
+  z-index: 2;
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+}
+.ticker-item span { color: var(--cyan); }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  nav { padding: 0 2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  #hero, #about, #services, #benefits, #industries, #technologies, #portfolio, #testimonials, #contact, footer { padding-left: 2rem; padding-right: 2rem; }
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 400px; margin: 0 auto; }
+  .about-grid, .benefits-inner, .tech-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-item:first-child { grid-column: span 2; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-item:first-child { grid-column: span 1; }
+  .form-grid { grid-template-columns: 1fr; }
+  .benefits-list { grid-template-columns: 1fr; }
+  .tech-list { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+}
+
+/* GLITCH ANIMATION */
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; clip-path: none; }
+  92% { transform: skew(-2deg); clip-path: polygon(0 10%, 100% 10%, 100% 45%, 0 45%); }
+  94% { transform: skew(2deg) translateX(3px); clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+  96% { transform: none; clip-path: none; }
+}
+.hero-title { animation: fadeInUp 0.8s ease both; }
+
+/* LOADING SCREEN */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+.loader.hidden { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--text);
+}
+.loader-logo span { color: var(--cyan); }
+.loader-bar {
+  width: 200px; height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.loader-progress {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--cyan);
+  width: 0%;
+  transition: width 0.1s;
+  box-shadow: 0 0 10px var(--cyan);
+}
+.loader-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-logo">VELKOR <span>AUTOMATION</span></div>
+  <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
+  <div class="loader-text" id="loaderText">Initializing systems...</div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- GRID -->
+<div class="grid-bg"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="18,2 34,10 34,26 18,34 2,26 2,10" fill="none" stroke="rgba(0,245,255,0.3)" stroke-width="1"/>
+        <polygon points="18,6 30,12 30,24 18,30 6,24 6,12" fill="none" stroke="rgba(0,245,255,0.5)" stroke-width="1"/>
+        <polygon points="18,11 25,15 25,23 18,27 11,23 11,15" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1"/>
+        <circle cx="18" cy="19" r="4" fill="#00f5ff" opacity="0.9"/>
+        <line x1="18" y1="2" x2="18" y2="11" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+        <line x1="34" y1="10" x2="25" y2="15" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+        <line x1="34" y1="26" x2="25" y2="23" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+        <line x1="18" y1="34" x2="18" y2="27" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+        <line x1="2" y1="26" x2="11" y2="23" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+        <line x1="2" y1="10" x2="11" y2="15" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <span class="logo-text">VELKOR <span>AUTO</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Despre</a></li>
+    <li><a href="#services">Servicii</a></li>
+    <li><a href="#benefits">Beneficii</a></li>
+    <li><a href="#industries">Industrii</a></li>
+    <li><a href="#technologies">Tehnologii</a></li>
+    <li><a href="#portfolio">Portofoliu</a></li>
+    <li><a href="#contact" class="nav-cta">Contactează-ne</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Industry 4.0 · Robotics · AI
+      </div>
+      <h1 class="hero-title">
+        Automatizăm<br>
+        <span class="accent">Viitorul</span><br>
+        <span class="outline">Industriei</span>
+      </h1>
+      <p class="hero-sub">Soluții inteligente de robotică industrială și medicală pentru companii moderne care construiesc astăzi industria de mâine.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Solicită Consultație
+        </a>
+        <a href="#services" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Descoperă Soluțiile
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Clienți Activi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Satisfacție</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Țări</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="robot-frame">
+        <canvas id="heroCanvas" width="500" height="500"></canvas>
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner tr"></div>
+        <div class="frame-corner bl"></div>
+        <div class="frame-corner br"></div>
+        <div class="scan-line"></div>
+        <div class="data-tags">
+          <div class="data-tag" style="top:10%;left:105%">AXIS_6DOF</div>
+          <div class="data-tag" style="top:30%;left:105%">TORQUE: 180Nm</div>
+          <div class="data-tag" style="top:50%;left:105%">PRECISION: ±0.02mm</div>
+          <div class="data-tag" style="top:70%;left:105%">STATUS: ACTIVE</div>
+          <div class="data-tag" style="bottom:10%;right:105%;text-align:right">AI_ENABLED</div>
+          <div class="data-tag" style="bottom:25%;right:105%;text-align:right">SPEED: 3.2m/s</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item">🤖 <span>Roboți Industriali</span> · Eficiență maximă în producție</div>
+    <div class="ticker-item">⚕️ <span>Roboți Medicali</span> · Inovație în sănătate</div>
+    <div class="ticker-item">🏭 <span>Industry 4.0</span> · Transformare digitală completă</div>
+    <div class="ticker-item">🧠 <span>Inteligență Artificială</span> · Soluții predictive</div>
+    <div class="ticker-item">⚙️ <span>Automatizare</span> · 24/7 fără întreruperi</div>
+    <div class="ticker-item">🌐 <span>IoT Industrial</span> · Conectivitate totală</div>
+    <div class="ticker-item">🤖 <span>Roboți Industriali</span> · Eficiență maximă în producție</div>
+    <div class="ticker-item">⚕️ <span>Roboți Medicali</span> · Inovație în sănătate</div>
+    <div class="ticker-item">🏭 <span>Industry 4.0</span> · Transformare digitală completă</div>
+    <div class="ticker-item">🧠 <span>Inteligență Artificială</span> · Soluții predictive</div>
+    <div class="ticker-item">⚙️ <span>Automatizare</span> · 24/7 fără întreruperi</div>
+    <div class="ticker-item">🌐 <span>IoT Industrial</span> · Conectivitate totală</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-box">
+        <div class="section-label">Velkor Automation</div>
+        <p style="color:var(--text2);font-size:0.9rem;line-height:1.8;margin-bottom:1.5rem;">Companie de tehnologie de nouă generație, specializată în robotică avansată și automatizare inteligentă. Construim poduri între prezentul industrial și viitorul automatizat.</p>
+        <div class="metric-row">
+          <div class="metric-item">
+            <div class="metric-num">40%</div>
+            <div class="metric-txt">Reducere costuri operaționale</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">3x</div>
+            <div class="metric-txt">Creștere productivitate</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">99.7%</div>
+            <div class="metric-txt">Uptime garantat</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">24/7</div>
+            <div class="metric-txt">Operare continuă</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">Despre Noi</div>
+      <h2 class="section-title">Pionieri în <span class="accent">Automatizarea</span> Inteligentă</h2>
+      <p class="section-desc" style="margin-bottom:2rem;">Velkor Automation se poziționează ca partenerul tehnologic de încredere pentru companiile care înțeleg că viitorul industriei este automatizat. Combinăm expertiza în robotică industrială cu inovații medicale pentru a livra soluții complete.</p>
+      <ul class="feature-list">
+        <li>Integrare completă a sistemelor robotice în infrastructuri existente</li>
+        <li>Expertiză dovedită în roboți colaborativi și autonomi</li>
+        <li>Soluții certificate pentru sectorul medical și farmaceutic</li>
+        <li>Suport tehnic dedicat și servicii post-implementare</li>
+        <li>Parteneriate cu lideri globali în robotică: ABB, KUKA, Fanuc</li>
+        <li>Conformitate cu standardele ISO, CE și Industry 4.0</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-label">Catalog Soluții</div>
+    <h2 class="section-title">Serviciile <span class="accent">Noastre</span></h2>
+    <p class="section-desc">Portofoliu complet de soluții robotice și de automatizare, personalizate pentru nevoile specifice ale fiecărui client.</p>
+  </div>
+
+  <div class="services-tabs">
+    <button class="tab-btn active" onclick="switchTab('industrial', this)">Roboți Industriali</button>
+    <button class="tab-btn" onclick="switchTab('medical', this)">Roboți Medicali</button>
+    <button class="tab-btn" onclick="switchTab('automation', this)">Automatizare</button>
+  </div>
+
+  <div class="services-grid active" id="tab-industrial">
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <div class="card-title">Roboți Colaborativi (Cobots)</div>
+      <p class="card-desc">Roboți proiectați să lucreze în siguranță alături de oameni, fără bariere fizice. Ideali pentru asamblare, inspecție și manipulare precisă.</p>
+      <div class="card-tags"><span class="tag">UR Series</span><span class="tag">KUKA LBR</span><span class="tag">Asamblare</span><span class="tag">Inspecție</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+      <div class="card-title">Roboți pentru Sudură</div>
+      <p class="card-desc">Sisteme robotice avansate pentru sudură MIG/TIG/laser cu precizie de ±0.1mm. Reducere dramatică a defectelor și creșterea vitezei de producție.</p>
+      <div class="card-tags"><span class="tag">MIG/TIG</span><span class="tag">Laser</span><span class="tag">Auto</span><span class="tag">Metal</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+      <div class="card-title">Roboți de Paletizare</div>
+      <p class="card-desc">Automatizarea completă a proceselor de paletizare cu viteze de până la 2000 pachete/oră. Adaptabili la orice tip de produs și configurație de paleți.</p>
+      <div class="card-tags"><span class="tag">2000 pac/h</span><span class="tag">Multi-SKU</span><span class="tag">Logistică</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5H15.5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v-1.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8H3.5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11H8.5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10v1.5C10 7.33 9.33 8 8.5 8S7 7.33 7 6.5 7.67 5 8.5 5z"/></svg></div>
+      <div class="card-title">Roboți de Manipulare</div>
+      <p class="card-desc">Brațe robotice cu 6 grade de libertate pentru manipulare precisă a componentelor fragile sau grele. Soluții pentru pick-and-place, sortare și ambalare.</p>
+      <div class="card-tags"><span class="tag">6-DOF</span><span class="tag">Pick&Place</span><span class="tag">Sortare</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="card-title">AGV – Vehicule Autonome</div>
+      <p class="card-desc">Sisteme AMR/AGV pentru transport intern autonom. Navigație SLAM, evitare obstacole în timp real, integrare WMS și ERP.</p>
+      <div class="card-tags"><span class="tag">SLAM Nav</span><span class="tag">WMS</span><span class="tag">Fleet Mgmt</span></div>
+    </div>
+  </div>
+
+  <div class="services-grid" id="tab-medical">
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="card-title">Roboți de Dezinfectare</div>
+      <p class="card-desc">Sisteme autonome UV-C și H2O2 pentru dezinfecție completă a saloanelor, blocurilor operatorii și zonelor critice din spitale. Eficiență 99.9%.</p>
+      <div class="card-tags"><span class="tag">UV-C</span><span class="tag">H2O2</span><span class="tag">Autonomous</span><span class="tag">ISO 14644</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div class="card-title">Roboți Reabilitare Locomotorie</div>
+      <p class="card-desc">Exoschelete și sisteme de reabilitare asistată robotic pentru pacienți cu AVC, leziuni spinale sau afecțiuni neurologice. Programe individualizate AI.</p>
+      <div class="card-tags"><span class="tag">Exoschelet</span><span class="tag">AVC</span><span class="tag">Neuro-rehab</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="card-title">Soluții Spitale Inteligente</div>
+      <p class="card-desc">Ecosistem complet pentru spitale: roboți de distribuție medicamente, transport probe laborator, asistenți virtuali pentru triaj și sisteme de monitorizare IoT.</p>
+      <div class="card-tags"><span class="tag">Smart Hospital</span><span class="tag">IoT</span><span class="tag">Farmacie</span><span class="tag">Laborator</span></div>
+    </div>
+  </div>
+
+  <div class="services-grid" id="tab-automation">
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div class="card-title">Integrare AI Industrială</div>
+      <p class="card-desc">Implementare algoritmi machine learning pentru mentenanță predictivă, controlul calității în timp real și optimizarea dinamică a proceselor de producție.</p>
+      <div class="card-tags"><span class="tag">ML</span><span class="tag">Predictive</span><span class="tag">Computer Vision</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="card-title">Linii de Producție Automate</div>
+      <p class="card-desc">Proiectare și implementare linii de producție complet automatizate, cu integrare SCADA, MES și ERP. De la concept la producție în serie.</p>
+      <div class="card-tags"><span class="tag">SCADA</span><span class="tag">MES</span><span class="tag">ERP</span><span class="tag">PLC</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg></div>
+      <div class="card-title">IoT Industrial & Conectivitate</div>
+      <p class="card-desc">Rețele de senzori industriali, protocoale OPC-UA, MQTT, conexiuni cloud pentru monitorizare și control în timp real al tuturor echipamentelor.</p>
+      <div class="card-tags"><span class="tag">OPC-UA</span><span class="tag">MQTT</span><span class="tag">Cloud</span><span class="tag">Edge AI</span></div>
+    </div>
+    <div class="service-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+      <div class="card-title">Digital Twin & Simulare</div>
+      <p class="card-desc">Crearea de gemeni digitali pentru fabrici, linii de producție și echipamente. Optimizare virtuală înainte de implementare fizică.</p>
+      <div class="card-tags"><span class="tag">Digital Twin</span><span class="tag">Simulation</span><span class="tag">3D Model</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="benefits-inner">
+    <div class="reveal">
+      <div class="section-label">Avantaje</div>
+      <h2 class="section-title">De ce <span class="accent">Automatizați</span>?</h2>
+      <p class="section-desc">Automatizarea nu este o cheltuială – este cea mai profitabilă investiție pe care o poate face o companie modernă.</p>
+      <div style="margin-top:2rem;">
+        <a href="#contact" class="btn-primary" style="display:inline-flex;">Calculează ROI-ul tău →</a>
+      </div>
+    </div>
+    <div class="benefits-list reveal">
+      <div class="benefit-item">
+        <span class="benefit-icon">📉</span>
+        <div class="benefit-num">-40%</div>
+        <div class="benefit-title">Costuri Operaționale</div>
+        <div class="benefit-desc">Reducere semnificativă a cheltuielilor cu forța de muncă și erorilor costisitoare.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">⚡</span>
+        <div class="benefit-num">3x</div>
+        <div class="benefit-title">Productivitate Crescută</div>
+        <div class="benefit-desc">Roboții lucrează non-stop cu viteză și precizie constantă, tripling output-ul.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🎯</span>
+        <div class="benefit-num">±0.02mm</div>
+        <div class="benefit-title">Precizie Absolută</div>
+        <div class="benefit-desc">Eliminarea erorilor umane cu sisteme de control de ultimă generație.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🕐</span>
+        <div class="benefit-num">24/7</div>
+        <div class="benefit-title">Operare Continuă</div>
+        <div class="benefit-desc">Fără pauze, weekend-uri sau concedii. Producție non-stop, 365 zile/an.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🛡️</span>
+        <div class="benefit-num">-90%</div>
+        <div class="benefit-title">Accidente de Muncă</div>
+        <div class="benefit-desc">Roboții preiau sarcinile periculoase, protejând angajații de riscuri industriale.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">📊</span>
+        <div class="benefit-num">18 luni</div>
+        <div class="benefit-title">ROI Rapid</div>
+        <div class="benefit-desc">Recuperarea investiției în medie în 18 luni, cu rentabilitate pe termen lung.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="industries-inner">
+    <div class="industries-header reveal">
+      <div class="section-label">Verticale</div>
+      <h2 class="section-title">Industrii <span class="accent">Deservite</span></h2>
+      <p class="section-desc">Soluțiile noastre se adaptează la specificul fiecărei industrii, oferind rezultate măsurabile indiferent de sector.</p>
+    </div>
+    <div class="industries-scroll reveal">
+      <div class="industry-card">
+        <span class="industry-icon">🏭</span>
+        <div class="industry-name">Producție Industrială</div>
+        <div class="industry-desc">Automatizarea completă a liniilor de fabricație</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">🚗</span>
+        <div class="industry-name">Automotive</div>
+        <div class="industry-desc">Sudură, asamblare și vopsire robotizată</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">📦</span>
+        <div class="industry-name">Logistică</div>
+        <div class="industry-desc">Depozite inteligente și sortare automată</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">🏥</span>
+        <div class="industry-name">Medicină</div>
+        <div class="industry-desc">Roboți medicali și spitale inteligente</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">🍎</span>
+        <div class="industry-name">Industrie Alimentară</div>
+        <div class="industry-desc">Ambalare, sortare și control calitate</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">🏗️</span>
+        <div class="industry-name">Construcții</div>
+        <div class="industry-desc">Prefabricare și inspecție automatizată</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">💊</span>
+        <div class="industry-name">Farmacie</div>
+        <div class="industry-desc">Producție sterilă și dispensare automată</div>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon">⚡</span>
+        <div class="industry-name">Energie</div>
+        <div class="industry-desc">Inspecție și mentenanță roboți</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section id="technologies">
+  <div class="tech-inner">
+    <div class="reveal">
+      <div class="section-label">Stack Tehnologic</div>
+      <h2 class="section-title">Tehnologii <span class="accent">Core</span></h2>
+      <p class="section-desc" style="margin-bottom:2rem;">Folosim cele mai avansate tehnologii disponibile pentru a construi soluții robuste și scalabile.</p>
+      <div class="tech-list">
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Inteligență Artificială</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Machine Learning</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Computer Vision</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Digital Twin</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Edge Computing</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">IoT Industrial</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Robotică Colaborativă</span></div>
+        <div class="tech-item"><div class="tech-dot"></div><span class="tech-name">Cloud Integrat</span></div>
+      </div>
+    </div>
+    <div class="tech-diagram reveal">
+      <canvas id="techCanvas" width="400" height="400"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label">Proiecte</div>
+    <h2 class="section-title">Studii de <span class="accent">Caz</span></h2>
+    <p class="section-desc" style="margin:0 auto;">Proiecte demonstrative și implementări de referință care ilustrează capabilitățile noastre.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-visual"><canvas id="pCanvas1" width="600" height="200"></canvas></div>
+      <div class="portfolio-info">
+        <div class="portfolio-category">Automatizare Industrială</div>
+        <div class="portfolio-title">Linie de Producție Integrată – Automotive</div>
+        <p class="portfolio-desc">Implementare completă a 24 brațe robotice pentru o fabrică de componente auto. Creștere productivitate 340%, reducere rebuturi 78%.</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-visual"><canvas id="pCanvas2" width="300" height="200"></canvas></div>
+      <div class="portfolio-info">
+        <div class="portfolio-category">Robotică Medicală</div>
+        <div class="portfolio-title">Smart Hospital System</div>
+        <p class="portfolio-desc">Spital cu 300 paturi echipat cu roboți de dezinfectare UV, transport probe și asistenți AI.</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-visual"><canvas id="pCanvas3" width="300" height="200"></canvas></div>
+      <div class="portfolio-info">
+        <div class="portfolio-category">Logistică Inteligentă</div>
+        <div class="portfolio-title">Depozit Automat 40,000m²</div>
+        <p class="portfolio-desc">Implementare flotă de 120 AGV-uri cu sistem de management centralizat AI.</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-visual"><canvas id="pCanvas4" width="300" height="200"></canvas></div>
+      <div class="portfolio-info">
+        <div class="portfolio-category">Industry 4.0</div>
+        <div class="portfolio-title">Digital Twin Factory</div>
+        <p class="portfolio-desc">Gemene digitale pentru simulare și optimizare continuă a proceselor de fabricație.</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-visual"><canvas id="pCanvas5" width="300" height="200"></canvas></div>
+      <div class="portfolio-info">
+        <div class="portfolio-category">AI & Calitate</div>
+        <div class="portfolio-title">Sistem Vision Quality Control</div>
+        <p class="portfolio-desc">Computer vision cu AI pentru inspecție automată 100% a produselor pe linia de fabricație.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="reveal">
+      <div class="section-label">Feedback Clienți</div>
+      <h2 class="section-title">Ce Spun <span class="accent">Partenerii</span> Noștri</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Velkor Automation a transformat complet linia noastră de producție. ROI-ul a depășit estimările cu 40%. Echipa tehnică este remarcabilă prin profesionalism și reactivitate.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AM</div>
+          <div>
+            <div class="author-name">Alexandru Mihai</div>
+            <div class="author-role">Director de Producție · AutoParts SRL</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Implementarea roboților de dezinfectare UV în clinica noastră a redus rata infecțiilor nosocomiale cu 62%. O investiție esențială pentru siguranța pacienților.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">EC</div>
+          <div>
+            <div class="author-name">Dr. Elena Constantin</div>
+            <div class="author-role">Manager Medical · Centrul Clinic Premium</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Sistemul AGV implementat de Velkor a optimizat complet logistica depozitului nostru. Productivitatea a crescut cu 280% și costurile cu personalul s-au redus semnificativ.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RD</div>
+          <div>
+            <div class="author-name">Radu Dumitrescu</div>
+            <div class="author-role">CEO · LogiTech Distribution</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Să <span class="accent">Colaborăm</span></h2>
+      <p class="section-desc">Echipa noastră de experți este pregătită să analizeze nevoile specifice ale companiei dvs. și să propună soluția optimă.</p>
+      <div style="margin-top:2rem;">
+        <div class="contact-detail">
+          <div class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="detail-label">Sediu</div>
+            <div class="detail-value">Chișinău, Moldova · Bulevardul Ștefan cel Mare</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div>
+            <div class="detail-label">Telefon</div>
+            <div class="detail-value">+373 22 000 000</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <div class="detail-label">Email</div>
+            <div class="detail-value">contact@velkor-automation.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nume Complet</label>
+          <input type="text" class="form-input" placeholder="Ion Popescu">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Companie</label>
+          <input type="text" class="form-input" placeholder="Compania SRL">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="email@companie.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon</label>
+          <input type="tel" class="form-input" placeholder="+373 XX XXX XXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Industrie & Nevoi</label>
+        <textarea class="form-textarea" placeholder="Descrieți pe scurt tipul de automatizare dorit, industria și volumul de producție..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;cursor:pointer;" onclick="submitForm()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Solicită Ofertă Personalizată
+      </button>
+      <p style="font-size:0.72rem;color:var(--text3);text-align:center;margin-top:1rem;">Răspundem în maximum 24 de ore. Toate datele sunt tratate confidențial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-text" style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;letter-spacing:0.15em;color:var(--text);">VELKOR <span style="color:var(--cyan)">AUTOMATION</span></span>
+      <p class="footer-tagline">Automatizăm viitorul industriei și medicinei. Soluții robotice de ultimă generație pentru companii care construiesc astăzi lumea de mâine.</p>
+      <div class="social-links">
+        <a class="social-link" href="#" title="LinkedIn">in</a>
+        <a class="social-link" href="#" title="Twitter">𝕏</a>
+        <a class="social-link" href="#" title="YouTube">▶</a>
+        <a class="social-link" href="#" title="Facebook">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicii</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Roboți Industriali</a></li>
+        <li><a href="#services">Roboți Medicali</a></li>
+        <li><a href="#services">Automatizare I4.0</a></li>
+        <li><a href="#services">IoT Industrial</a></li>
+        <li><a href="#services">Digital Twin</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Companie</h4>
+      <ul class="footer-links">
+        <li><a href="#about">Despre Noi</a></li>
+        <li><a href="#portfolio">Portofoliu</a></li>
+        <li><a href="#testimonials">Testimoniale</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Cariere</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Industrii</h4>
+      <ul class="footer-links">
+        <li><a href="#industries">Automotive</a></li>
+        <li><a href="#industries">Medicină</a></li>
+        <li><a href="#industries">Logistică</a></li>
+        <li><a href="#industries">Alimentar</a></li>
+        <li><a href="#industries">Farmacie</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Velkor Automation. All rights reserved.</span>
+    <span class="footer-copy">Moldova · Romania · Europe</span>
+  </div>
+</footer>
+
+<script>
+// LOADER
+window.addEventListener('load', () => {
+  const prog = document.getElementById('loaderProgress');
+  const txt = document.getElementById('loaderText');
+  const msgs = ['Initializing systems...', 'Loading robotics engine...', 'Calibrating sensors...', 'System ready.'];
+  let w = 0;
+  const iv = setInterval(() => {
+    w += Math.random() * 20 + 5;
+    if (w > 100) w = 100;
+    prog.style.width = w + '%';
+    txt.textContent = msgs[Math.floor(w / 25)] || msgs[3];
+    if (w >= 100) {
+      clearInterval(iv);
+      setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 300);
+    }
+  }, 120);
+});
+
+// CURSOR
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx+'px'; cur.style.top = my+'px'; });
+setInterval(() => { rx += (mx-rx)*0.15; ry += (my-ry)*0.15; ring.style.left = rx+'px'; ring.style.top = ry+'px'; }, 16);
+document.querySelectorAll('a,button,.service-card,.benefit-item,.industry-card,.tech-item,.portfolio-item,.testimonial-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='6px'; cur.style.height='6px'; ring.style.width='54px'; ring.style.height='54px'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='12px'; cur.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; });
+});
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i*80); } });
+}, { threshold: 0.1 });
+reveals.forEach(r => ro.observe(r));
+
+// TABS
+function switchTab(id, btn) {
+  document.querySelectorAll('.services-grid').forEach(g => g.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// MENU
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '72px'; links.style.left='0'; links.style.right='0';
+  links.style.background='rgba(2,8,16,0.98)';
+  links.style.padding='2rem';
+  links.style.borderBottom='1px solid rgba(0,245,255,0.1)';
+}
+
+// FORM
+function submitForm() {
+  const btn = event.target.closest('button');
+  btn.textContent = '✓ Mesaj trimis! Vă contactăm în 24h.';
+  btn.style.background = 'rgba(0,245,255,0.15)';
+  btn.style.color = '#00f5ff';
+  btn.style.border = '1px solid rgba(0,245,255,0.4)';
+}
+
+// ===== HERO CANVAS =====
+const hc = document.getElementById('heroCanvas');
+const hx = hc.getContext('2d');
+let ht = 0;
+
+function drawRobot(t) {
+  const w = hc.width, h = hc.height;
+  hx.clearRect(0,0,w,h);
+  const cx = w/2, cy = h/2;
+  const swing = Math.sin(t*0.02)*8;
+  const breathe = Math.sin(t*0.015)*4;
+
+  // GLOW BACKGROUND
+  const g = hx.createRadialGradient(cx, cy, 0, cx, cy, 200);
+  g.addColorStop(0,'rgba(0,128,255,0.12)');
+  g.addColorStop(1,'rgba(0,0,0,0)');
+  hx.fillStyle = g;
+  hx.beginPath(); hx.arc(cx,cy,200,0,Math.PI*2); hx.fill();
+
+  // BODY
+  hx.strokeStyle = '#00f5ff'; hx.lineWidth = 1.5;
+  hx.shadowColor = '#00f5ff'; hx.shadowBlur = 8;
+  roundRect(cx-60, cy-80+breathe/2, 120, 140, 8, false, true);
+
+  // CHEST DETAIL
+  hx.strokeStyle = 'rgba(0,245,255,0.4)'; hx.lineWidth = 1;
+  roundRect(cx-45, cy-60+breathe/2, 90, 50, 4, false, true);
+  
+  // CORE LED
+  const ledG = hx.createRadialGradient(cx, cy-35+breathe/2, 0, cx, cy-35+breathe/2, 20);
+  ledG.addColorStop(0,'rgba(0,245,255,0.8)');
+  ledG.addColorStop(1,'rgba(0,128,255,0)');
+  hx.fillStyle = ledG; hx.shadowBlur=20;
+  hx.beginPath(); hx.arc(cx, cy-35+breathe/2, 16,0,Math.PI*2); hx.fill();
+  hx.strokeStyle='rgba(0,245,255,0.9)'; hx.lineWidth=1.5; hx.shadowBlur=15;
+  hx.beginPath(); hx.arc(cx, cy-35+breathe/2, 12,0,Math.PI*2); hx.stroke();
+  hx.fillStyle='rgba(0,245,255,1)'; hx.shadowBlur=0;
+  hx.beginPath(); hx.arc(cx, cy-35+breathe/2, 5,0,Math.PI*2); hx.fill();
+
+  // HEAD
+  hx.strokeStyle='#00f5ff'; hx.lineWidth=1.5; hx.shadowBlur=10;
+  roundRect(cx-40, cy-155+breathe, 80, 65, 10, false, true);
+  
+  // VISOR
+  hx.fillStyle='rgba(0,128,255,0.2)'; hx.strokeStyle='rgba(0,245,255,0.7)'; hx.lineWidth=1;
+  roundRect(cx-32, cy-148+breathe, 64, 25, 5, true, true);
+  
+  // EYES
+  const eyeR = 7, eyeY = cy-136+breathe;
+  [-15,15].forEach(ex => {
+    const eg = hx.createRadialGradient(cx+ex, eyeY, 0, cx+ex, eyeY, eyeR);
+    eg.addColorStop(0,'rgba(0,255,255,0.9)');
+    eg.addColorStop(1,'rgba(0,128,255,0.2)');
+    hx.fillStyle=eg; hx.shadowBlur=12; hx.shadowColor='#00ffff';
+    hx.beginPath(); hx.arc(cx+ex, eyeY, eyeR, 0, Math.PI*2); hx.fill();
+  });
+
+  // NECK
+  hx.strokeStyle='rgba(0,245,255,0.5)'; hx.lineWidth=1; hx.shadowBlur=5;
+  hx.strokeRect(cx-15, cy-90+breathe, 30, 12);
+
+  // SHOULDERS
+  hx.strokeStyle='#00f5ff'; hx.lineWidth=1.5; hx.shadowBlur=8;
+  roundRect(cx-90, cy-70+breathe/2, 30, 35, 4, false, true);
+  roundRect(cx+60, cy-70+breathe/2, 30, 35, 4, false, true);
+
+  // ARMS
+  const leftArmY = cy-35+breathe/2 + swing;
+  const rightArmY = cy-35+breathe/2 - swing;
+  hx.strokeStyle='rgba(0,245,255,0.7)'; hx.lineWidth=1.5;
+  roundRect(cx-95, leftArmY, 20, 60, 4, false, true);
+  roundRect(cx+75, rightArmY, 20, 60, 4, false, true);
+  
+  // HANDS
+  roundRect(cx-98, leftArmY+58, 26, 20, 4, false, true);
+  roundRect(cx+72, rightArmY+58, 26, 20, 4, false, true);
+
+  // HIPS
+  hx.strokeStyle='rgba(0,245,255,0.6)'; hx.lineWidth=1;
+  roundRect(cx-55, cy+60, 110, 20, 3, false, true);
+  
+  // LEGS
+  hx.strokeStyle='rgba(0,245,255,0.7)'; hx.lineWidth=1.5;
+  roundRect(cx-50, cy+80, 35, 80, 4, false, true);
+  roundRect(cx+15, cy+80, 35, 80, 4, false, true);
+  
+  // FEET
+  roundRect(cx-55, cy+158, 45, 16, 3, false, true);
+  roundRect(cx+10, cy+158, 45, 16, 3, false, true);
+
+  // CIRCUIT LINES ON BODY
+  hx.strokeStyle='rgba(0,245,255,0.25)'; hx.lineWidth=0.5; hx.shadowBlur=0;
+  for(let i=0;i<3;i++) {
+    const lx = cx - 35 + i*30;
+    hx.beginPath(); hx.moveTo(lx, cy-55+breathe/2); hx.lineTo(lx, cy-20+breathe/2);
+    hx.stroke();
+    hx.beginPath(); hx.arc(lx, cy-20+breathe/2, 2, 0, Math.PI*2); hx.fillStyle='rgba(0,245,255,0.4)'; hx.fill();
+  }
+
+  // PARTICLE DOTS
+  hx.shadowColor='#00f5ff'; hx.shadowBlur=6;
+  for(let i=0;i<8;i++) {
+    const a = (t*0.01 + i*Math.PI/4);
+    const r = 170 + Math.sin(t*0.02+i)*15;
+    const px = cx + Math.cos(a)*r, py = cy + Math.sin(a)*r*0.6;
+    const alpha = 0.2 + Math.sin(t*0.03+i)*0.15;
+    hx.fillStyle=`rgba(0,245,255,${alpha})`;
+    hx.beginPath(); hx.arc(px, py, 2, 0, Math.PI*2); hx.fill();
+  }
+  hx.shadowBlur=0;
+}
+
+function roundRect(x,y,w,h,r,fill,stroke) {
+  hx.beginPath();
+  hx.moveTo(x+r,y); hx.lineTo(x+w-r,y); hx.quadraticCurveTo(x+w,y,x+w,y+r);
+  hx.lineTo(x+w,y+h-r); hx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  hx.lineTo(x+r,y+h); hx.quadraticCurveTo(x,y+h,x,y+h-r);
+  hx.lineTo(x,y+r); hx.quadraticCurveTo(x,y,x+r,y);
+  hx.closePath();
+  if(fill) hx.fill(); if(stroke) hx.stroke();
+}
+
+// TECH CANVAS – Neural Network
+const tc = document.getElementById('techCanvas');
+const tx = tc.getContext('2d');
+const nodes = [];
+const edges = [];
+const nodeData = [
+  {x:0.5,y:0.1,label:'AI Core'},{x:0.2,y:0.3,label:'ML'},{x:0.8,y:0.3,label:'Vision'},
+  {x:0.5,y:0.5,label:'Control'},{x:0.15,y:0.6,label:'IoT'},{x:0.85,y:0.6,label:'Edge'},
+  {x:0.3,y:0.8,label:'Robot'},{x:0.7,y:0.8,label:'Cloud'},{x:0.5,y:0.92,label:'Industry 4.0'}
+];
+const edgePairs = [[0,1],[0,2],[1,3],[2,3],[3,4],[3,5],[4,6],[5,7],[6,8],[7,8],[1,6],[2,7]];
+let techT=0;
+
+function drawTech(t) {
+  const w=tc.width, h=tc.height;
+  tx.clearRect(0,0,w,h);
+  const pulse = (t%120)/120;
+  edgePairs.forEach(([a,b],i) => {
+    const n1=nodeData[a], n2=nodeData[b];
+    const x1=n1.x*w, y1=n1.y*h, x2=n2.x*w, y2=n2.y*h;
+    tx.strokeStyle=`rgba(0,128,255,0.15)`;
+    tx.lineWidth=1;
+    tx.beginPath(); tx.moveTo(x1,y1); tx.lineTo(x2,y2); tx.stroke();
+    const phase = ((t*0.01+i*0.3)%1);
+    if(phase>0 && phase<1) {
+      const px=x1+(x2-x1)*phase, py=y1+(y2-y1)*phase;
+      tx.fillStyle=`rgba(0,245,255,${0.8-phase*0.5})`;
+      tx.shadowColor='#00f5ff'; tx.shadowBlur=8;
+      tx.beginPath(); tx.arc(px,py,3,0,Math.PI*2); tx.fill();
+      tx.shadowBlur=0;
+    }
+  });
+  nodeData.forEach((n,i) => {
+    const x=n.x*w, y=n.y*h;
+    const r=i===0?20:14;
+    const g2=tx.createRadialGradient(x,y,0,x,y,r);
+    const brightness = 0.7+Math.sin(t*0.02+i*0.8)*0.3;
+    g2.addColorStop(0,`rgba(0,245,255,${brightness*0.6})`);
+    g2.addColorStop(1,`rgba(0,64,128,0.1)`);
+    tx.fillStyle=g2; tx.shadowColor='#00f5ff'; tx.shadowBlur=i===0?20:10;
+    tx.beginPath(); tx.arc(x,y,r,0,Math.PI*2); tx.fill();
+    tx.strokeStyle=`rgba(0,245,255,${brightness})`;
+    tx.lineWidth=1.5; tx.shadowBlur=0;
+    tx.beginPath(); tx.arc(x,y,r,0,Math.PI*2); tx.stroke();
+    tx.fillStyle=`rgba(0,245,255,${brightness*0.9})`;
+    tx.font=`bold ${i===0?11:9}px 'JetBrains Mono'`;
+    tx.textAlign='center'; tx.textBaseline='middle';
+    tx.fillText(n.label.toUpperCase(), x, y);
+  });
+}
+
+// PORTFOLIO CANVASES
+function drawPortfolio(id, type) {
+  const c=document.getElementById(id);
+  if(!c) return;
+  const x=c.getContext('2d'), w=c.width, h=c.height;
+  x.clearRect(0,0,w,h);
+  if(type==='factory') {
+    x.fillStyle='#091525'; x.fillRect(0,0,w,h);
+    const grd=x.createLinearGradient(0,0,w,0);
+    grd.addColorStop(0,'rgba(0,64,128,0.3)'); grd.addColorStop(0.5,'rgba(0,245,255,0.05)'); grd.addColorStop(1,'rgba(0,64,128,0.3)');
+    x.fillStyle=grd; x.fillRect(0,0,w,h);
+    for(let i=0;i<6;i++) {
+      const bx=40+i*95, by=h-60-Math.random()*80, bw=60, bh=h-by-20;
+      x.fillStyle=`rgba(0,128,255,0.15)`; x.strokeStyle=`rgba(0,245,255,0.4)`; x.lineWidth=1;
+      x.fillRect(bx,by,bw,bh); x.strokeRect(bx,by,bw,bh);
+      for(let j=0;j<3;j++) { x.fillStyle='rgba(0,245,255,0.3)'; x.fillRect(bx+8+j*18,by+10,12,8); }
+    }
+    x.fillStyle='rgba(0,245,255,0.6)'; x.font='bold 11px Orbitron'; x.textAlign='center';
+    x.fillText('AUTOMATED FACTORY — 24 ROBOTS ACTIVE', w/2, 20);
+  } else if(type==='hospital') {
+    x.fillStyle='#050f1a'; x.fillRect(0,0,w,h);
+    x.strokeStyle='rgba(0,245,255,0.1)';
+    for(let i=0;i<5;i++) { x.beginPath(); x.arc(w/2,h/2, 30+i*25, 0, Math.PI*2); x.stroke(); }
+    x.fillStyle='rgba(0,255,200,0.6)'; x.font='bold 10px JetBrains Mono'; x.textAlign='center'; x.fillText('UV-C ACTIVE ZONE', w/2, h/2); x.fillText('DISINFECTION: 99.9%', w/2, h/2+16);
+  } else if(type==='warehouse') {
+    x.fillStyle='#091525'; x.fillRect(0,0,w,h);
+    for(let i=0;i<8;i++) { for(let j=0;j<3;j++) { x.fillStyle='rgba(0,64,128,0.3)'; x.strokeStyle='rgba(0,245,255,0.3)'; x.lineWidth=1; x.fillRect(20+i*35,20+j*50,25,40); x.strokeRect(20+i*35,20+j*50,25,40); } }
+    x.fillStyle='rgba(0,245,255,0.9)'; x.beginPath(); x.arc(120, 170, 8,0,Math.PI*2); x.fill();
+    x.fillStyle='rgba(0,245,255,0.6)'; x.font='10px JetBrains Mono'; x.textAlign='center'; x.fillText('AGV FLEET: 120 UNITS', w/2, 185);
+  } else if(type==='twin') {
+    x.fillStyle='#050f1a'; x.fillRect(0,0,w,h);
+    x.strokeStyle='rgba(0,128,255,0.5)'; x.lineWidth=1;
+    x.setLineDash([4,4]);
+    x.strokeRect(20,20,w/2-30,h-40); x.strokeRect(w/2+10,20,w/2-30,h-40);
+    x.setLineDash([]);
+    x.fillStyle='rgba(0,245,255,0.5)'; x.font='9px JetBrains Mono'; x.textAlign='center';
+    x.fillText('PHYSICAL', w/4, h/2); x.fillText('DIGITAL TWIN', w*3/4, h/2);
+    x.strokeStyle='rgba(0,245,255,0.3)'; x.lineWidth=1;
+    for(let i=0;i<5;i++) { x.beginPath(); x.moveTo(w/2-20, 40+i*24); x.lineTo(w/2+20, 40+i*24); x.stroke(); }
+  } else if(type==='vision') {
+    x.fillStyle='#050f1a'; x.fillRect(0,0,w,h);
+    const cx=w/2, cy=h/2;
+    x.strokeStyle='rgba(0,245,255,0.6)'; x.lineWidth=1.5;
+    x.strokeRect(cx-40,cy-35,80,70);
+    [[-30,-25],[10,-25],[-30,10],[10,10]].forEach(([dx,dy]) => {
+      x.strokeStyle='rgba(0,255,128,0.8)'; x.strokeRect(cx+dx,cy+dy,20,14);
+    });
+    x.fillStyle='rgba(0,245,255,0.6)'; x.font='10px JetBrains Mono'; x.textAlign='center';
+    x.fillText('VISION AI: 99.8% ACCURACY', cx, 18);
+  }
+}
+
+// ANIMATE
+function animate() {
+  ht++; techT++;
+  drawRobot(ht);
+  drawTech(techT);
+  requestAnimationFrame(animate);
+}
+animate();
+
+// DRAW PORTFOLIO (static)
+drawPortfolio('pCanvas1','factory');
+drawPortfolio('pCanvas2','hospital');
+drawPortfolio('pCanvas3','warehouse');
+drawPortfolio('pCanvas4','twin');
+drawPortfolio('pCanvas5','vision');
+
+// SMOOTH ANCHOR SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
